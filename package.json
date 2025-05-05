@@ -29,7 +29,21 @@
             "@opentelemetry/sdk-trace-base": "1.13.0",
             "@opentelemetry/sdk-trace-node": "1.13.0",
             "@opentelemetry/semantic-conventions": "1.13.0"
-        }
+        },
+        "onlyBuiltDependencies": [
+            "@biomejs/biome",
+            "@prisma/client",
+            "bcrypt",
+            "better-sqlite3",
+            "bufferutil",
+            "contentlayer",
+            "es5-ext",
+            "esbuild",
+            "fast-folder-size",
+            "protobufjs",
+            "turbo",
+            "utf-8-validate"
+        ]
     },
     "dependencies": {
         "@biomejs/biome": "1.0.0",
