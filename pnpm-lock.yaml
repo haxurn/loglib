@@ -61,7 +61,7 @@ importers:
         version: 5.1.6
       vitest:
         specifier: ^0.31.0
-        version: 0.31.0(@vitest/browser@0.31.1)(happy-dom@9.20.3)(terser@5.17.3)(webdriverio@8.10.5(encoding@0.1.13)(typescript@5.1.6))
+        version: 0.31.0(@vitest/browser@0.31.1)(happy-dom@9.20.3)(terser@5.17.3)(webdriverio@8.10.5(bufferutil@4.0.7)(encoding@0.1.13)(typescript@5.1.6)(utf-8-validate@6.0.3))
 
   apps/api:
     dependencies:
@@ -76,7 +76,7 @@ importers:
         version: 1.1.1
       '@libsql/client':
         specifier: ^0.3.1
-        version: 0.3.5(encoding@0.1.13)
+        version: 0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
       '@loglib/clickhouse':
         specifier: workspace:*
         version: link:../../packages/clickhouse
@@ -88,7 +88,7 @@ importers:
         version: link:../../packages/email
       '@t3-oss/env-core':
         specifier: ^0.6.0
-        version: 0.6.0(typescript@5.3.3)(zod@3.21.4)
+        version: 0.6.0(typescript@5.8.3)(zod@3.21.4)
       '@types/request-ip':
         specifier: ^0.0.38
         version: 0.0.38
@@ -109,7 +109,7 @@ importers:
         version: 16.3.1
       drizzle-orm:
         specifier: ^0.28.5
-        version: 0.28.5(@libsql/client@0.3.5(encoding@0.1.13))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.26.1)
+        version: 0.28.5(@libsql/client@0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.26.1)
       hono:
         specifier: ^3.3.4
         version: 3.3.4
@@ -342,6 +342,9 @@ importers:
       bcrypt:
         specifier: ^5.1.0
         version: 5.1.0(encoding@0.1.13)
+      better-auth:
+        specifier: ^1.2.7
+        version: 1.2.7
       better-sqlite3:
         specifier: ^8.5.2
         version: 8.5.2
@@ -392,7 +395,7 @@ importers:
         version: 0.19.13
       drizzle-orm:
         specifier: ^0.28.5
-        version: 0.28.5(@libsql/client@0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.8.0)(better-sqlite3@8.5.2)(kysely@0.26.1)
+        version: 0.28.5(@libsql/client@0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.8.0)(better-sqlite3@8.5.2)(kysely@0.27.6)
       encoding:
         specifier: ^0.1.13
         version: 0.1.13
@@ -648,7 +651,7 @@ importers:
         version: 0.12.0
       '@libsql/client':
         specifier: ^0.3.1
-        version: 0.3.5(encoding@0.1.13)
+        version: 0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
       '@paralleldrive/cuid2':
         specifier: ^2.2.2
         version: 2.2.2
@@ -660,7 +663,7 @@ importers:
         version: 0.19.13
       drizzle-orm:
         specifier: ^0.28.5
-        version: 0.28.5(@libsql/client@0.3.5(encoding@0.1.13))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.26.1)
+        version: 0.28.5(@libsql/client@0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.27.6)
       tsx:
         specifier: ^3.12.7
         version: 3.12.7
@@ -1484,6 +1487,12 @@ packages:
     resolution: {integrity: sha512-0oIyUfKoI3mSqMvsxBdclDwxXKXAUA8v/apZbc+iSyARYou1o8ZGDxbUYyLFoW2arqS2jDGqJuZvv1d/io1axg==}
     engines: {node: '>=6.9.0'}
 
+  '@better-auth/utils@0.2.4':
+    resolution: {integrity: sha512-ayiX87Xd5sCHEplAdeMgwkA0FgnXsEZBgDn890XHHwSWNqqRZDYOq3uj2Ei2leTv1I2KbG5HHn60Ah1i2JWZjQ==}
+
+  '@better-fetch/fetch@1.1.18':
+    resolution: {integrity: sha512-rEFOE1MYIsBmoMJtQbl32PGHHXuG2hDxvEd7rUHE0vCBoFQVSDqaVs9hkZEtHCxRoY+CljXKFCOuJ8uxqw1LcA==}
+
   '@biomejs/biome@1.0.0':
     resolution: {integrity: sha512-Y5CND1QZ5pF6hc4dFw5ItDutv9KJO91ksLdBIFyvHL7LmXN0UomqyyRWryvrqq+YlA8Q58cR6sqjjQuMp9E2Ig==}
     engines: {node: '>=14.*'}
@@ -1691,12 +1700,15 @@ packages:
 
   '@esbuild-kit/cjs-loader@2.4.4':
     resolution: {integrity: sha512-NfsJX4PdzhwSkfJukczyUiZGc7zNNWZcEAyqeISpDnn0PTfzMJR1aR8xAIPskBejIxBJbIgCCMzbaYa9SXepIg==}
+    deprecated: 'Merged into tsx: https://tsx.is'
 
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
+    deprecated: 'Merged into tsx: https://tsx.is'
 
   '@esbuild-kit/esm-loader@2.6.5':
     resolution: {integrity: sha512-FxEMIkJKnodyA1OaCUoEvbYRkoZlLZ4d/eXFu9Fh8CbBBgP5EmZxrfTRyN0qpXZ4vOvqnE5YdRdcrmUUXuU+dA==}
+    deprecated: 'Merged into tsx: https://tsx.is'
 
   '@esbuild-plugins/node-resolve@0.1.4':
     resolution: {integrity: sha512-haFQ0qhxEpqtWWY0kx1Y5oE3sMyO1PcoSiWEPrAw6tm/ZOOLXjSs6Q+v1v9eyuVF0nNt50YEvrcrvENmyoMv5g==}
@@ -2171,6 +2183,9 @@ packages:
     peerDependencies:
       react: '>= 16'
 
+  '@hexagon/base64@1.1.28':
+    resolution: {integrity: sha512-lhqDEAvWixy3bZ+UOYbPwUbBkwBq5C1LAJ/xPC8Oi+lL54oyakv/npbA0aU2hgCsx/1NUd4IBvV03+aUBWxerw==}
+
   '@hono/node-server@1.1.1':
     resolution: {integrity: sha512-0ZfrcW8Y+TAGNzKGoDB1iQ7Gv7uGsGDOYlz7nckXcHRpK60Oxuz1ttiFmdHYmI6kGO+/VJ8Iy58LDhoTPqkiow==}
     engines: {node: '>=18.0.0'}
@@ -2244,6 +2259,9 @@ packages:
 
   '@jspm/core@2.0.0-beta.24':
     resolution: {integrity: sha512-a4Bo/80Z6CoJNor5ldgs6002utmmbttP4JYd/FJ0Ob2fVdf6O6ha5SORBCqrnDnBvMc1TlrHY7dCfat5+H0a6A==}
+
+  '@levischuck/tiny-cbor@0.2.11':
+    resolution: {integrity: sha512-llBRm4dT4Z89aRsm6u2oEZ8tfwL/2l6BwpZ7JcyieouniDECM5AqNgr/y08zalEIvW3RSK4upYyybDcmjXqAow==}
 
   '@libsql/client@0.3.4':
     resolution: {integrity: sha512-b1rpCzm02oQuh1zM1UKdKxhClyMMlgyFagcmsuGTve/AQxubO/FaRgoKXTcGaOqoRjymE1qf0sQM2UoyPvu3lA==}
@@ -2486,6 +2504,7 @@ packages:
 
   '@nextui-org/accordion@2.0.20':
     resolution: {integrity: sha512-nJ46qLDj8jusTVNGOTtvI4Hanr5HsTS9VQwAGg1pi4oUXTsAD7JO4ARQ4zFmLrxHMb8GQLBsMDH691LWKlQElg==}
+    deprecated: This package has been deprecated. Please use @heroui/accordion instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
@@ -2497,46 +2516,55 @@ packages:
 
   '@nextui-org/avatar@2.0.18':
     resolution: {integrity: sha512-ynLr4wRermmba5gdW4y+hUdGDzemrzvTgq9SkCLH9+gljkfMgVMKsZYcabat110HJMHs2Jg8aE4SFTZWj4AVng==}
+    deprecated: This package has been deprecated. Please use @heroui/avatar instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/badge@2.0.16':
     resolution: {integrity: sha512-OmdLUUmpYUoduUPVTVHuicoMU9KWuOE0iaVINg0lLN4RATDPkKNLf3W2vhV996KBmaW3Dwd1R8kJZ13BrJdBvw==}
+    deprecated: This package has been deprecated. Please use @heroui/badge instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/button@2.0.18':
     resolution: {integrity: sha512-XFgW7FQRlh1sVt3J2UKxvZxGHCPaK7wwzBLh3moRwPoJ16PjRYV4S9ijvW8tDl8/pvmXmCDjACFllZ7U39bUJQ==}
+    deprecated: This package has been deprecated. Please use @heroui/button instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/card@2.0.18':
     resolution: {integrity: sha512-eYF6kCZlGifB/loHmCJRwbxHx/6iwMnz2gSs9kWrGmh1KWLB18Jr9m2eJQLLgVMiE3uQ86SiBZ5JxmZvXBk3pw==}
+    deprecated: This package has been deprecated. Please use @heroui/card instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/checkbox@2.0.19':
     resolution: {integrity: sha512-c/VENfsSw8DFFbvsn48g7LHtUrG56PDEkvqy+GbPKVZadIrVH2mj1jKvjAzbcnwv4nBHc/EcWonkfPxXNUV4kA==}
+    deprecated: This package has been deprecated. Please use @heroui/checkbox instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/chip@2.0.18':
     resolution: {integrity: sha512-2CCHgZVYEE574XpDU8Q5Q6twPtPQITSaV9SO7GOdZR+LsVtMCYSAJQou2bMOCZLHDVpM9NZ+0ur874/vI2/HXw==}
+    deprecated: This package has been deprecated. Please use @heroui/chip instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/code@2.0.16':
     resolution: {integrity: sha512-V6sLz/kkIrvMEc/3myIuJabPpRjCjODgsz/ejjtC/yIVuP6GFHInyCT2fAlGXCnWP+0e9rvo+hpINDtGeC4pEg==}
+    deprecated: This package has been deprecated. Please use @heroui/code instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/divider@2.0.17':
     resolution: {integrity: sha512-RdsfF2bBCG+xh7FDBC0qNoG1R8OL3o157GSrzd4B6Jd9uqRFq7N0M41tnNq35i/uF9KsxIV7UxJPXK6VAezezQ==}
+    deprecated: This package has been deprecated. Please use @heroui/divider instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/dropdown@2.1.7':
     resolution: {integrity: sha512-SyoEAUo8sAXddO0e9iwp5Xax5+/DyAt3aFWKgJbOM6w44qBXO3OFIaQYx1I3vDk1DWUTqRArpwAyDFvhKbNWxw==}
+    deprecated: This package has been deprecated. Please use @heroui/dropdown instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
@@ -2549,64 +2577,76 @@ packages:
 
   '@nextui-org/image@2.0.18':
     resolution: {integrity: sha512-OoDufSvnoIdk460JMe0XzYwpiUjgvJdZj902QaKcA1FWEZCR3vs3MQYxZ8xokFEYGXLLsoC3InKGcKFHRzCKGg==}
+    deprecated: This package has been deprecated. Please use @heroui/image instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/input@2.1.6':
     resolution: {integrity: sha512-8kUXTE60mD3Ut8xsYv4sFSexVaL5mHXfRauAqOoBONQo/mZTuMiCKI8znWuNTj4ULQ36shcakY065F5v1kdEDg==}
+    deprecated: This package has been deprecated. Please use @heroui/input instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/kbd@2.0.17':
     resolution: {integrity: sha512-5S5XFGOaBEBb3vrpAx19iD6G8QSwieHL7/EjfthqgGoOzJkUBPLXt4hZf358g6FOXoE2Qs3c476cApaVZOzddw==}
+    deprecated: This package has been deprecated. Please use @heroui/kbd instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/link@2.0.19':
     resolution: {integrity: sha512-fKi9sBQLoQOAzhaWttInKcngMQcKRcWA1JZEmyd1ptQ7msf6jJCY+KZ5s/d3keeUnrFX0TKtNEdbdbRCfn+6Xg==}
+    deprecated: This package has been deprecated. Please use @heroui/link instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/listbox@2.1.7':
     resolution: {integrity: sha512-WcGlqhFmlMuCWsFdlYZUq7qKVxHjcpQC7takve/vztxGSHKyWXkoElS55jKjes62YGXRZ//U0dgF+3IJU58ApA==}
+    deprecated: This package has been deprecated. Please use @heroui/listbox instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/menu@2.0.8':
     resolution: {integrity: sha512-8QuNGfav0FhqxS4JpDDL7eTTP7eP5uiapNHmfPMdm3I7pugeH9OWOlrvc6EQ1TBIfT2tUHzE7wzpRwUlhPm6Lg==}
+    deprecated: This package has been deprecated. Please use @heroui/menu instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/modal@2.0.20':
     resolution: {integrity: sha512-LE2HuyijyARMpdErGdlgpY6g3DLlqEPYbI5Bs/Fp7MIsubz2ZhN04EVSVxID2c8zIguIyte26yw93n9nV6+XHg==}
+    deprecated: This package has been deprecated. Please use @heroui/modal instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/navbar@2.0.19':
     resolution: {integrity: sha512-gETXFUSFd+NIBbkq5LnsoC5yQ7AugdLJZMpn4kgVy6zyq+N50LBIAir43I+k7+QllPHpF976vO58mCMkMfcKAQ==}
+    deprecated: This package has been deprecated. Please use @heroui/navbar instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/pagination@2.0.19':
     resolution: {integrity: sha512-A61AsUnOsI0fthd3paqQZoTzSp3oqlcMNd3Q8p7vRNAF2vESSvmVfgJlrITrwsOLkGoka13iotnj19NkdDNQMQ==}
+    deprecated: This package has been deprecated. Please use @heroui/pagination instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/popover@2.1.6':
     resolution: {integrity: sha512-FlNvztOJX5ywSqY4fqq6cgAZN/rrQwC7IR+5WJ8P6tsobcEVmu9UfnT9VvXHlDY/EMnBScpgWfQJcrlF++B4rg==}
+    deprecated: This package has been deprecated. Please use @heroui/popover instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/progress@2.0.18':
     resolution: {integrity: sha512-zAfQKKfcs1MJ2Wti7VvTgXKZYa6/fuZoKuCbG6WMiL5LiacQjavZzHxhNZz5ps4I5ihbhvpXg7HuiYdENC+E8A==}
+    deprecated: This package has been deprecated. Please use @heroui/progress instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/radio@2.0.19':
     resolution: {integrity: sha512-bS7DepD1kb11WQMEuqQ9/4b6lPnK/RpY6xFo9jUVMYrIBiefW3iT8bba3ZsCxQvxm+sQ1lOjWXn+GLDzVgWyJA==}
+    deprecated: This package has been deprecated. Please use @heroui/radio instead.
     peerDependencies:
       react: '>=18'
 
@@ -2620,23 +2660,27 @@ packages:
 
   '@nextui-org/react@2.1.10':
     resolution: {integrity: sha512-jQ6Z5bNk2RWkORfVZ1nwVjMaQatUSrImBiZB8k1WbmuEhrrRUz3HEaVBzZUcUG8W9d01g7nI8SotJyNU83dfLw==}
+    deprecated: This package has been deprecated. Please use @heroui/react instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/ripple@2.0.18':
     resolution: {integrity: sha512-sLmtdk+mVQ0BUMjrJJ1beaRwGORauZ5eTbjdMSug7WgvwgsJX5WTqOIx3qZdcb/VmJtKaBli6SIyYe73fs/VAw==}
+    deprecated: This package has been deprecated. Please use @heroui/ripple instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/scroll-shadow@2.1.6':
     resolution: {integrity: sha512-Ri7O8H9zDFQqTbnGWqD0KnuHppas6eY+dI7/Q0b3sLS/fNIVPwuVzYFibLaSnA/VkzBoRJhHRcaqUqka0a1rSA==}
+    deprecated: This package has been deprecated. Please use @heroui/scroll-shadow instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/select@2.1.8':
     resolution: {integrity: sha512-8mstcoUZfowW52CYa7tnG4OOM5fBsy8/xyV30IiRHqx9FhraqPEifBN8q/X7Mj516PNXN8ojj9WX9CfivTN13w==}
+    deprecated: This package has been deprecated. Please use @heroui/select instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
@@ -2653,27 +2697,32 @@ packages:
 
   '@nextui-org/skeleton@2.0.16':
     resolution: {integrity: sha512-+GV0WG6HQrbfis/KblidhyAn9mIUFBCkJzvUWmohJ7INMNx/1RdhgcuDXiKvgYQ8ewjpZMpAVXAmQKhkpE0uFQ==}
+    deprecated: This package has been deprecated. Please use @heroui/skeleton instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/snippet@2.0.22':
     resolution: {integrity: sha512-606bo8T4qaToxqiECNGyN/ZyLUkRHngEXi4RpHttP4O3Ze64EHq7tlu0bF3DjyJv+2vWIiZrJvi8VzJsAmfVvA==}
+    deprecated: This package has been deprecated. Please use @heroui/snippet instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
 
   '@nextui-org/spacer@2.0.16':
     resolution: {integrity: sha512-v8MKj40vFWnTyAONRNojrM2oTuK1jOhW5uI9yJ/dpA+eYWukEB/5kdMuGDXtVbcAFqvxro5+PAOFBYs+juvW+w==}
+    deprecated: This package has been deprecated. Please use @heroui/spacer instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/spinner@2.0.16':
     resolution: {integrity: sha512-HqWrL8O6d4dqHVrJUriDlg+C5qCqnBKCCOW69JIS3dpkk4P4M47OgzAXL7fqv5MuU+1vvxCg/cRh0V9fPwjcag==}
+    deprecated: This package has been deprecated. Please use @heroui/spinner instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/switch@2.0.18':
     resolution: {integrity: sha512-oqyaVBUgx3jBgIcFCGhPE9YKfZVqY/NSaWNvwyj7d4k8kr/cBkhZRkD+XN/DXcxXk/QPqJuyXSCg3IpnezUgHw==}
+    deprecated: This package has been deprecated. Please use @heroui/switch instead.
     peerDependencies:
       react: '>=18'
 
@@ -2689,11 +2738,13 @@ packages:
 
   '@nextui-org/table@2.0.20':
     resolution: {integrity: sha512-fxhBKQ1GKV+LoiFuP4LXZS41bnYztwwhz55qXzgzS9P9TTd075vxLXArk7p5DmxkA9ug7yAvgLXwLpDflYF9TQ==}
+    deprecated: This package has been deprecated. Please use @heroui/table instead.
     peerDependencies:
       react: '>=18'
 
   '@nextui-org/tabs@2.0.18':
     resolution: {integrity: sha512-ohsJCchJmEtUrFu8tV+SwcJdEkL3DZNamwRsh+X2RHkQ4XhVfhkSqmaXdHmmloY1hCJD+GxqVOZltwB0T5pFQQ==}
+    deprecated: This package has been deprecated. Please use @heroui/tabs instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
@@ -2705,6 +2756,7 @@ packages:
 
   '@nextui-org/tooltip@2.0.21':
     resolution: {integrity: sha512-aW7wsYqvZR92KNwBwl/X1C6NZ0PffRietlrBlCY9R8KG6nomw2az8R7gaiPkBse4ifBzvm/SUFzo0QGRqv2i7Q==}
+    deprecated: This package has been deprecated. Please use @heroui/tooltip instead.
     peerDependencies:
       framer-motion: '>=4.0.0'
       react: '>=18'
@@ -2797,15 +2849,23 @@ packages:
 
   '@nextui-org/user@2.0.19':
     resolution: {integrity: sha512-tIZv92UmMHK3u1AvSMac2Wg64dR3YUwCx+dmcRvH5WRGWGtkMo1obeiZf48EYmB6S3M8SlglNyHqBAGuV8BnQw==}
+    deprecated: This package has been deprecated. Please use @heroui/user instead.
     peerDependencies:
       react: '>=18'
 
   '@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3':
     resolution: {integrity: sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==}
 
+  '@noble/ciphers@0.6.0':
+    resolution: {integrity: sha512-mIbq/R9QXk5/cTfESb1OKtyFnk7oc1Om/8onA1158K9/OZUQFDEVy55jVTato+xmp3XX6F6Qh0zz0Nc1AxAlRQ==}
+
   '@noble/hashes@1.3.2':
     resolution: {integrity: sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==}
     engines: {node: '>= 16'}
+
+  '@noble/hashes@1.8.0':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
+    engines: {node: ^14.21.3 || >=16}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2975,6 +3035,21 @@ packages:
 
   '@paralleldrive/cuid2@2.2.2':
     resolution: {integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==}
+
+  '@peculiar/asn1-android@2.3.16':
+    resolution: {integrity: sha512-a1viIv3bIahXNssrOIkXZIlI2ePpZaNmR30d4aBL99mu2rO+mT9D6zBsp7H6eROWGtmwv0Ionp5olJurIo09dw==}
+
+  '@peculiar/asn1-ecc@2.3.15':
+    resolution: {integrity: sha512-/HtR91dvgog7z/WhCVdxZJ/jitJuIu8iTqiyWVgRE9Ac5imt2sT/E4obqIVGKQw7PIy+X6i8lVBoT6wC73XUgA==}
+
+  '@peculiar/asn1-rsa@2.3.15':
+    resolution: {integrity: sha512-p6hsanvPhexRtYSOHihLvUUgrJ8y0FtOM97N5UEpC+VifFYyZa0iZ5cXjTkZoDwxJ/TTJ1IJo3HVTB2JJTpXvg==}
+
+  '@peculiar/asn1-schema@2.3.15':
+    resolution: {integrity: sha512-QPeD8UA8axQREpgR5UTAfu2mqQmm97oUqahDtNdBcfj3qAnoXzFdQW+aNf/tD2WVXF8Fhmftxoj0eMIT++gX2w==}
+
+  '@peculiar/asn1-x509@2.3.15':
+    resolution: {integrity: sha512-0dK5xqTqSLaxv1FHXIcd4Q/BZNuopg+u1l23hT9rOmQ1g4dNtw0g/RnEi+TboB0gOwGtrWn269v27cMgchFIIg==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -4130,6 +4205,13 @@ packages:
     engines: {node: '>= 8.0.0'}
     hasBin: true
 
+  '@simplewebauthn/browser@13.1.0':
+    resolution: {integrity: sha512-WuHZ/PYvyPJ9nxSzgHtOEjogBhwJfC8xzYkPC+rR/+8chl/ft4ngjiK8kSU5HtRJfczupyOh33b25TjYbvwAcg==}
+
+  '@simplewebauthn/server@13.1.1':
+    resolution: {integrity: sha512-1hsLpRHfSuMB9ee2aAdh0Htza/X3f4djhYISrggqGe3xopNjOcePiSDkDDoPzDYaaMCrbqGP1H2TYU7bgL9PmA==}
+    engines: {node: '>=20.0.0'}
+
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
@@ -4723,6 +4805,10 @@ packages:
   asn1@0.2.6:
     resolution: {integrity: sha512-ix/FxPn0MDjeyJ7i/yoHGFt/EX6LyNbxSEhPPXODPL+KB0VPk86UYfL0lMdy+KCnv+fmvIzySwaK5COwqVbWTQ==}
 
+  asn1js@3.0.6:
+    resolution: {integrity: sha512-UOCGPYbl0tv8+006qks/dTgV9ajs97X2p0FAbyS2iyCRrmLSRolDaHdp+v/CLgnzHc3fVB+CwYiUmei7ndFcgA==}
+    engines: {node: '>=12.0.0'}
+
   assert-plus@0.2.0:
     resolution: {integrity: sha512-u1L0ZLywRziOVjUhRxI0Qg9G+4RnFB9H/Rq40YWn0dieDgO7vAYeJz6jKAO6t/aruzlDFLAPkQTT87e+f8Imaw==}
     engines: {node: '>=0.8'}
@@ -4811,6 +4897,12 @@ packages:
 
   before-after-hook@2.2.3:
     resolution: {integrity: sha512-NzUnlZexiaH/46WDhANlyR2bXRopNg4F/zuSA3OpZnllCUgRaOF2znDioDWrmbNVsuZk6l9pMquQB38cfBZwkQ==}
+
+  better-auth@1.2.7:
+    resolution: {integrity: sha512-2hCB263GSrgetsMUZw8vv9O1e4S4AlYJW3P4e8bX9u3Q3idv4u9BzDFCblpTLuL4YjYovghMCN0vurAsctXOAQ==}
+
+  better-call@1.0.9:
+    resolution: {integrity: sha512-Qfm0gjk0XQz0oI7qvTK1hbqTsBY4xV2hsHAxF8LZfUYl3RaECCIifXuVqtPpZJWvlCCMlQSvkvhhyuApGUba6g==}
 
   better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
@@ -5661,6 +5753,9 @@ packages:
 
   defined@1.0.1:
     resolution: {integrity: sha512-hsBd2qSVCRE+5PmNdHt1uzyrFu5d3RwmFDKzyNZMFq/EwDNJF7Ee5+D5oEKF0hU6LhtoUF1macFvOe4AskQC1Q==}
+
+  defu@6.1.4:
+    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
   delaunator@5.0.1:
     resolution: {integrity: sha512-8nvh+XBe96aCESrGOqMp/84b13H9cdKbG5P2ejQCh4d4sK9RL4371qou9drQjMhvnPmhWl5hnmqbEE0fXr9Xnw==}
@@ -7098,6 +7193,9 @@ packages:
   jose@4.14.6:
     resolution: {integrity: sha512-EqJPEUlZD0/CSUMubKtMaYUOtWe91tZXTWMJZoKSbLk+KtdhNdcvppH8lA9XwVu2V4Ailvsj0GBZJ2ZwDjfesQ==}
 
+  jose@5.10.0:
+    resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
+
   jotai-cache@0.3.0:
     resolution: {integrity: sha512-hV6DUD1frRpW0EN8Ss7n4KNaMZRBokQw6KPT3seA4P35QRXctMNUn4pHRlg3hzO+KBPpEZw+fyKlWAqagmuIwQ==}
     peerDependencies:
@@ -7268,6 +7366,10 @@ packages:
     resolution: {integrity: sha512-FVRomkdZofBu3O8SiwAOXrwbhPZZr8mBN5ZeUWyprH29jzvy6Inzqbd0IMmGxpd4rcOCL9HyyBNWBa8FBqDAdg==}
     engines: {node: '>=14.0.0'}
 
+  kysely@0.27.6:
+    resolution: {integrity: sha512-FIyV/64EkKhJmjgC0g2hygpBv5RNWVPyNCqSAD7eTCv6eFWNIi4PN1UvdSJGicN/o35bnevgis4Y0UDC0qi8jQ==}
+    engines: {node: '>=14.0.0'}
+
   layout-base@1.0.2:
     resolution: {integrity: sha512-8h2oVEZNktL4BH2JCOI90iD1yXwL6iNW7KcCKT2QZgQJR2vbqDsldCTPRU9NifTCqHZci57XvQQ15YTu+sTYPg==}
 
@@ -7355,6 +7457,7 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.includes@4.3.0:
     resolution: {integrity: sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w==}
@@ -7385,6 +7488,7 @@ packages:
 
   lodash.omit@4.5.0:
     resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
 
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
@@ -7544,9 +7648,6 @@ packages:
   mdast-util-from-markdown@1.3.1:
     resolution: {integrity: sha512-4xTO/M8c82qBcnQc1tgpNtubGUW/Y1tBQ1B0i5CtSoelOLKFYlElIr3bvgREYYO5iRqbMY1YuqZng0GVOI8Qww==}
 
-  mdast-util-from-markdown@2.0.1:
-    resolution: {integrity: sha512-aJEUyzZ6TzlsX2s5B4Of7lN7EQtAxvtradMMglCQDyaTFgse6CmtmdJ15ElnVRlCg1vpNyVtbem0PWzlNieZsA==}
-
   mdast-util-frontmatter@1.0.1:
     resolution: {integrity: sha512-JjA2OjxRqAa8wEG8hloD0uTU0kdn8kbtOWpPP94NBkfAlbxn4S8gCGf/9DwFtEeGPXrDcNXdiDjVaRdUFqYokw==}
 
@@ -7607,9 +7708,6 @@ packages:
   mdast-util-to-string@3.2.0:
     resolution: {integrity: sha512-V4Zn/ncyN1QNSqSBxTrMOLpjr+IKdHl2v3KVLoWmDPscP4r9GcCi71gjgvUV1SFSKh92AjAG4peFuBl2/YgCJg==}
 
-  mdast-util-to-string@4.0.0:
-    resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
-
   mdast-util-toc@6.1.1:
     resolution: {integrity: sha512-Er21728Kow8hehecK2GZtb7Ny3omcoPUVrmObiSUwmoRYVZaXLR751QROEFjR8W/vAQdHMLj49Lz20J55XaNpw==}
 
@@ -7648,9 +7746,6 @@ packages:
 
   micromark-core-commonmark@1.1.0:
     resolution: {integrity: sha512-BgHO1aRbolh2hcrzL2d1La37V0Aoz73ymF8rAcKnohLy93titmv62E0gP8Hrx9PKcKrqCZ1BbLGbP3bEhoXYlw==}
-
-  micromark-core-commonmark@2.0.1:
-    resolution: {integrity: sha512-CUQyKr1e///ZODyD1U3xit6zXwy1a8q2a1S1HKtIlmgvurrEpaw/Y9y6KSIbF8P59cn/NjzHyO+Q2fAyYLQrAA==}
 
   micromark-extension-frontmatter@1.1.1:
     resolution: {integrity: sha512-m2UH9a7n3W8VAH9JO9y01APpPKmNNNs71P0RbknEmYSaZU5Ghogv38BYO94AI5Xw6OYfxZRdHZZ2nYjs/Z+SZQ==}
@@ -7697,14 +7792,8 @@ packages:
   micromark-factory-destination@1.1.0:
     resolution: {integrity: sha512-XaNDROBgx9SgSChd69pjiGKbV+nfHGDPVYFs5dOoDd7ZnMAE+Cuu91BCpsY8RT2NP9vo/B8pds2VQNCLiu0zhg==}
 
-  micromark-factory-destination@2.0.0:
-    resolution: {integrity: sha512-j9DGrQLm/Uhl2tCzcbLhy5kXsgkHUrjJHg4fFAeoMRwJmJerT9aw4FEhIbZStWN8A3qMwOp1uzHr4UL8AInxtA==}
-
   micromark-factory-label@1.1.0:
     resolution: {integrity: sha512-OLtyez4vZo/1NjxGhcpDSbHQ+m0IIGnT8BoPamh+7jVlzLJBH98zzuCoUeMxvM6WsNeh8wx8cKvqLiPHEACn0w==}
-
-  micromark-factory-label@2.0.0:
-    resolution: {integrity: sha512-RR3i96ohZGde//4WSe/dJsxOX6vxIg9TimLAS3i4EhBAFx8Sm5SmqVfR8E87DPSR31nEAjZfbt91OMZWcNgdZw==}
 
   micromark-factory-mdx-expression@1.0.9:
     resolution: {integrity: sha512-jGIWzSmNfdnkJq05c7b0+Wv0Kfz3NJ3N4cBjnbO4zjXIlxJr+f8lk+5ZmwFvqdAbUy2q6B5rCY//g0QAAaXDWA==}
@@ -7712,20 +7801,11 @@ packages:
   micromark-factory-space@1.1.0:
     resolution: {integrity: sha512-cRzEj7c0OL4Mw2v6nwzttyOZe8XY/Z8G0rzmWQZTBi/jjwyw/U4uqKtUORXQrR5bAZZnbTI/feRV/R7hc4jQYQ==}
 
-  micromark-factory-space@2.0.0:
-    resolution: {integrity: sha512-TKr+LIDX2pkBJXFLzpyPyljzYK3MtmllMUMODTQJIUfDGncESaqB90db9IAUcz4AZAJFdd8U9zOp9ty1458rxg==}
-
   micromark-factory-title@1.1.0:
     resolution: {integrity: sha512-J7n9R3vMmgjDOCY8NPw55jiyaQnH5kBdV2/UXCtZIpnHH3P6nHUKaH7XXEYuWwx/xUJcawa8plLBEjMPU24HzQ==}
 
-  micromark-factory-title@2.0.0:
-    resolution: {integrity: sha512-jY8CSxmpWLOxS+t8W+FG3Xigc0RDQA9bKMY/EwILvsesiRniiVMejYTE4wumNc2f4UbAa4WsHqe3J1QS1sli+A==}
-
   micromark-factory-whitespace@1.1.0:
     resolution: {integrity: sha512-v2WlmiymVSp5oMg+1Q0N1Lxmt6pMhIHD457whWM7/GUlEks1hI9xj5w3zbc4uuMKXGisksZk8DzP2UyGbGqNsQ==}
-
-  micromark-factory-whitespace@2.0.0:
-    resolution: {integrity: sha512-28kbwaBjc5yAI1XadbdPYHX/eDnqaUFVikLwrO7FDnKG7lpgxnvk/XGRhX/PN0mOZ+dBSZ+LgunHS+6tYQAzhA==}
 
   micromark-util-character@1.2.0:
     resolution: {integrity: sha512-lXraTwcX3yH/vMDaFWCQJP1uIszLVebzUa3ZHdrgxr7KEU/9mL4mVgCpGbyhvNLNlauROiNUq7WN5u7ndbY6xg==}
@@ -7736,32 +7816,17 @@ packages:
   micromark-util-chunked@1.1.0:
     resolution: {integrity: sha512-Ye01HXpkZPNcV6FiyoW2fGZDUw4Yc7vT0E9Sad83+bEDiCJ1uXu0S3mr8WLpsz3HaG3x2q0HM6CTuPdcZcluFQ==}
 
-  micromark-util-chunked@2.0.0:
-    resolution: {integrity: sha512-anK8SWmNphkXdaKgz5hJvGa7l00qmcaUQoMYsBwDlSKFKjc6gjGXPDw3FNL3Nbwq5L8gE+RCbGqTw49FK5Qyvg==}
-
   micromark-util-classify-character@1.1.0:
     resolution: {integrity: sha512-SL0wLxtKSnklKSUplok1WQFoGhUdWYKggKUiqhX+Swala+BtptGCu5iPRc+xvzJ4PXE/hwM3FNXsfEVgoZsWbw==}
-
-  micromark-util-classify-character@2.0.0:
-    resolution: {integrity: sha512-S0ze2R9GH+fu41FA7pbSqNWObo/kzwf8rN/+IGlW/4tC6oACOs8B++bh+i9bVyNnwCcuksbFwsBme5OCKXCwIw==}
 
   micromark-util-combine-extensions@1.1.0:
     resolution: {integrity: sha512-Q20sp4mfNf9yEqDL50WwuWZHUrCO4fEyeDCnMGmG5Pr0Cz15Uo7KBs6jq+dq0EgX4DPwwrh9m0X+zPV1ypFvUA==}
 
-  micromark-util-combine-extensions@2.0.0:
-    resolution: {integrity: sha512-vZZio48k7ON0fVS3CUgFatWHoKbbLTK/rT7pzpJ4Bjp5JjkZeasRfrS9wsBdDJK2cJLHMckXZdzPSSr1B8a4oQ==}
-
   micromark-util-decode-numeric-character-reference@1.1.0:
     resolution: {integrity: sha512-m9V0ExGv0jB1OT21mrWcuf4QhP46pH1KkfWy9ZEezqHKAxkj4mPCy3nIH1rkbdMlChLHX531eOrymlwyZIf2iw==}
 
-  micromark-util-decode-numeric-character-reference@2.0.1:
-    resolution: {integrity: sha512-bmkNc7z8Wn6kgjZmVHOX3SowGmVdhYS7yBpMnuMnPzDq/6xwVA604DuOXMZTO1lvq01g+Adfa0pE2UKGlxL1XQ==}
-
   micromark-util-decode-string@1.1.0:
     resolution: {integrity: sha512-YphLGCK8gM1tG1bd54azwyrQRjCFcmgj2S2GoJDNnh4vYtnL38JS8M4gpxzOPNyHdNEpheyWXCTnnTDY3N+NVQ==}
-
-  micromark-util-decode-string@2.0.0:
-    resolution: {integrity: sha512-r4Sc6leeUTn3P6gk20aFMj2ntPwn6qpDZqWvYmAG6NgvFTIlj4WtrAudLi65qYoaGdXYViXYw2pkmn7QnIFasA==}
 
   micromark-util-encode@1.1.0:
     resolution: {integrity: sha512-EuEzTWSTAj9PA5GOAs992GzNh2dGQO52UvAbtSOMvXTxv3Criqb6IOzJUBCmEqrrXSblJIJBbFFv6zPxpreiJw==}
@@ -7775,20 +7840,11 @@ packages:
   micromark-util-html-tag-name@1.2.0:
     resolution: {integrity: sha512-VTQzcuQgFUD7yYztuQFKXT49KghjtETQ+Wv/zUjGSGBioZnkA4P1XXZPT1FHeJA6RwRXSF47yvJ1tsJdoxwO+Q==}
 
-  micromark-util-html-tag-name@2.0.0:
-    resolution: {integrity: sha512-xNn4Pqkj2puRhKdKTm8t1YHC/BAjx6CEwRFXntTaRf/x16aqka6ouVoutm+QdkISTlT7e2zU7U4ZdlDLJd2Mcw==}
-
   micromark-util-normalize-identifier@1.1.0:
     resolution: {integrity: sha512-N+w5vhqrBihhjdpM8+5Xsxy71QWqGn7HYNUvch71iV2PM7+E3uWGox1Qp90loa1ephtCxG2ftRV/Conitc6P2Q==}
 
-  micromark-util-normalize-identifier@2.0.0:
-    resolution: {integrity: sha512-2xhYT0sfo85FMrUPtHcPo2rrp1lwbDEEzpx7jiH2xXJLqBuy4H0GgXk5ToU8IEwoROtXuL8ND0ttVa4rNqYK3w==}
-
   micromark-util-resolve-all@1.1.0:
     resolution: {integrity: sha512-b/G6BTMSg+bX+xVCshPTPyAu2tmA0E4X98NSR7eIbeC6ycCqCeE7wjfDIgzEbkzdEVJXRtOG4FbEm/uGbCRouA==}
-
-  micromark-util-resolve-all@2.0.0:
-    resolution: {integrity: sha512-6KU6qO7DZ7GJkaCgwBNtplXCvGkJToU86ybBAUdavvgsCiG8lSSvYxr9MhwmQ+udpzywHsl4RpGJsYWG1pDOcA==}
 
   micromark-util-sanitize-uri@1.2.0:
     resolution: {integrity: sha512-QO4GXv0XZfWey4pYFndLUKEAktKkG5kZTdUNaTAkzbuJxn2tNBOr+QtxR2XpWaMhbImT2dPzyLrPXLlPhph34A==}
@@ -7798,9 +7854,6 @@ packages:
 
   micromark-util-subtokenize@1.1.0:
     resolution: {integrity: sha512-kUQHyzRoxvZO2PuLzMt2P/dwVsTiivCK8icYTeR+3WgbuPqfHgPPy7nFKbeqRivBvn/3N3GBiNC+JRTMSxEC7A==}
-
-  micromark-util-subtokenize@2.0.1:
-    resolution: {integrity: sha512-jZNtiFl/1aY73yS3UGQkutD0UbhTt68qnRpw2Pifmz5wV9h8gOVsN70v+Lq/f1rKaU/W8pxRe8y8Q9FX1AOe1Q==}
 
   micromark-util-symbol@1.1.0:
     resolution: {integrity: sha512-uEjpEYY6KMs1g7QfJ2eX1SQEV+ZT4rUD3UcF6l57acZvLNK7PBZL+ty82Z1qhK1/yXIY4bdx04FKMgR0g4IAag==}
@@ -7816,9 +7869,6 @@ packages:
 
   micromark@3.2.0:
     resolution: {integrity: sha512-uD66tJj54JLYq0De10AhWycZWGQNUvDI55xPgk2sQM5kn1JYlhbCMTtEeT27+vAhW2FBQxLlOmS3pmA7/2z4aA==}
-
-  micromark@4.0.0:
-    resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
 
   micromatch@4.0.5:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
@@ -7959,6 +8009,10 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanostores@0.11.4:
+    resolution: {integrity: sha512-k1oiVNN4hDK8NcNERSZLQiMfRzEGtfnvZvdBvey3SQbgn8Dcrk0h1I6vpxApjb10PFUflZrgJ2WEZyJQ+5v7YQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
@@ -8074,6 +8128,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -8848,6 +8903,13 @@ packages:
       typescript:
         optional: true
 
+  pvtsutils@1.3.6:
+    resolution: {integrity: sha512-PLgQXQ6H2FWCaeRak8vvk1GW462lMxB5s3Jm673N82zI4vqtVUPuZdffdZbPDFRoU8kAhItWFtPCWiPpp4/EDg==}
+
+  pvutils@1.1.3:
+    resolution: {integrity: sha512-pMpnA0qRdFp32b1sJl1wOJNxZLQ2cbQx+k6tjNtZ8CpvVhNqEPRgivZ2WOUev2YMajecdH7ctUPDvEe87nariQ==}
+    engines: {node: '>=6.0.0'}
+
   q@1.5.1:
     resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
@@ -8893,6 +8955,7 @@ packages:
   range@0.0.3:
     resolution: {integrity: sha512-OxK2nY2bmeEB4NxoBraQIBOOeOIxoBvm6yt8MA1kLappgkG3SyLf173iOtT5woWycrtESDD2g0Nl2yt8YPoUnw==}
     engines: {node: '>=0.8'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
@@ -9392,9 +9455,6 @@ packages:
   remark-parse@10.0.2:
     resolution: {integrity: sha512-3ydxgHa/ZQzG8LvC7jTXccARYDcRld3VfcgIIFs7bI6vbRSxJJmzgLEIIoYKyrfhaY+ujuWaf/PJiMZXoiCXgw==}
 
-  remark-parse@11.0.0:
-    resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==}
-
   remark-parse@6.0.3:
     resolution: {integrity: sha512-QbDXWN4HfKTUC0hHa4teU463KclLAnwpn/FBn87j9cKYJWWawbiLgMfP2Q4XwhxxuuuOxHlw+pSN0OKuJwyVvg==}
 
@@ -9538,6 +9598,9 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
 
+  rou3@0.5.1:
+    resolution: {integrity: sha512-OXMmJ3zRk2xeXFGfA3K+EOPHC5u7RDFG7lIOx0X1pdnhUkI8MdVrbV+sNsD80ElpUZ+MRHdyxPnFthq9VHs8uQ==}
+
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
@@ -9609,6 +9672,9 @@ packages:
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
+
+  set-cookie-parser@2.7.1:
+    resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
 
   set-function-name@2.0.1:
     resolution: {integrity: sha512-tMNCiqYVkXIZgc2Hnoy2IvC/f8ezc5koaRFkCjrpWzGpCd3qbZXPzVy9MAZzK1ch/X0jvSkojys3oqJN0qCmdA==}
@@ -10142,6 +10208,9 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
   tsup@6.7.0:
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
     engines: {node: '>=14.18'}
@@ -10278,8 +10347,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  typescript@5.8.3:
+    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -10294,6 +10363,9 @@ packages:
 
   unbzip2-stream@1.4.3:
     resolution: {integrity: sha512-mlExGW4w71ebDJviH16lQLtZS32VKqsSfk80GCfUlwT/4/hNRFsoscrF/c++9xinkMzECL1uL9DDwXqFWkruPg==}
+
+  uncrypto@0.1.3:
+    resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
 
   unherit@1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
@@ -10325,9 +10397,6 @@ packages:
 
   unified@10.1.2:
     resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}
-
-  unified@11.0.4:
-    resolution: {integrity: sha512-apMPnyLjAX+ty4OrNap7yumyVAMlKx5IWU2wlzzUdYJO9A8f1p9m/gywF/GM2ZDFcjQPrx59Mc90KwmxsoklxQ==}
 
   unified@7.1.0:
     resolution: {integrity: sha512-lbk82UOIGuCEsZhPj8rNAkXSDXd6p0QLzIuSsCdxrqnqU56St4eyOB+AlXsVgVeRmetPTYydIuvFfpDIed8mqw==}
@@ -10855,6 +10924,9 @@ packages:
 
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+
+  zod@3.24.4:
+    resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -11675,6 +11747,13 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
+  '@better-auth/utils@0.2.4':
+    dependencies:
+      typescript: 5.8.3
+      uncrypto: 0.1.3
+
+  '@better-fetch/fetch@1.1.18': {}
+
   '@biomejs/biome@1.0.0':
     optionalDependencies:
       '@biomejs/cli-darwin-arm64': 1.0.0
@@ -11916,11 +11995,11 @@ snapshots:
       mdx-bundler: 9.2.1(esbuild@0.18.20)
       rehype-stringify: 9.0.4
       remark-frontmatter: 4.0.1
-      remark-parse: 11.0.0
+      remark-parse: 10.0.2
       remark-rehype: 10.1.0
       source-map-support: 0.5.21
       type-fest: 3.13.1
-      unified: 11.0.4
+      unified: 10.1.2
     optionalDependencies:
       esbuild: 0.18.20
     transitivePeerDependencies:
@@ -11939,7 +12018,7 @@ snapshots:
       ts-pattern: 4.3.0
       unified: 10.1.2
       yaml: 2.3.2
-      zod: 3.21.4
+      zod: 3.22.4
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
       - esbuild
@@ -12336,6 +12415,8 @@ snapshots:
     dependencies:
       react: 18.2.0
 
+  '@hexagon/base64@1.1.28': {}
+
   '@hono/node-server@1.1.1': {}
 
   '@hookform/resolvers@3.1.1(react-hook-form@7.44.3(react@18.2.0))':
@@ -12426,6 +12507,8 @@ snapshots:
 
   '@jspm/core@2.0.0-beta.24': {}
 
+  '@levischuck/tiny-cbor@0.2.11': {}
+
   '@libsql/client@0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)':
     dependencies:
       '@libsql/hrana-client': 0.5.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
@@ -12436,7 +12519,7 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  '@libsql/client@0.3.5(encoding@0.1.13)':
+  '@libsql/client@0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)':
     dependencies:
       '@libsql/hrana-client': 0.5.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
       js-base64: 3.7.5
@@ -13528,7 +13611,11 @@ snapshots:
   '@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3':
     optional: true
 
+  '@noble/ciphers@0.6.0': {}
+
   '@noble/hashes@1.3.2': {}
+
+  '@noble/hashes@1.8.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -13727,6 +13814,39 @@ snapshots:
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
       '@noble/hashes': 1.3.2
+
+  '@peculiar/asn1-android@2.3.16':
+    dependencies:
+      '@peculiar/asn1-schema': 2.3.15
+      asn1js: 3.0.6
+      tslib: 2.8.1
+
+  '@peculiar/asn1-ecc@2.3.15':
+    dependencies:
+      '@peculiar/asn1-schema': 2.3.15
+      '@peculiar/asn1-x509': 2.3.15
+      asn1js: 3.0.6
+      tslib: 2.8.1
+
+  '@peculiar/asn1-rsa@2.3.15':
+    dependencies:
+      '@peculiar/asn1-schema': 2.3.15
+      '@peculiar/asn1-x509': 2.3.15
+      asn1js: 3.0.6
+      tslib: 2.8.1
+
+  '@peculiar/asn1-schema@2.3.15':
+    dependencies:
+      asn1js: 3.0.6
+      pvtsutils: 1.3.6
+      tslib: 2.8.1
+
+  '@peculiar/asn1-x509@2.3.15':
+    dependencies:
+      '@peculiar/asn1-schema': 2.3.15
+      asn1js: 3.0.6
+      pvtsutils: 1.3.6
+      tslib: 2.8.1
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -15394,6 +15514,18 @@ snapshots:
       fflate: 0.7.4
       string.prototype.codepointat: 0.2.1
 
+  '@simplewebauthn/browser@13.1.0': {}
+
+  '@simplewebauthn/server@13.1.1':
+    dependencies:
+      '@hexagon/base64': 1.1.28
+      '@levischuck/tiny-cbor': 0.2.11
+      '@peculiar/asn1-android': 2.3.16
+      '@peculiar/asn1-ecc': 2.3.15
+      '@peculiar/asn1-rsa': 2.3.15
+      '@peculiar/asn1-schema': 2.3.15
+      '@peculiar/asn1-x509': 2.3.15
+
   '@sinclair/typebox@0.27.8': {}
 
   '@sindresorhus/is@0.14.0': {}
@@ -15447,9 +15579,9 @@ snapshots:
     dependencies:
       zod: 3.21.4
 
-  '@t3-oss/env-core@0.6.0(typescript@5.3.3)(zod@3.21.4)':
+  '@t3-oss/env-core@0.6.0(typescript@5.8.3)(zod@3.21.4)':
     dependencies:
-      typescript: 5.3.3
+      typescript: 5.8.3
       zod: 3.21.4
 
   '@t3-oss/env-nextjs@0.2.2(zod@3.21.4)':
@@ -15787,15 +15919,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  '@vitest/browser@0.31.1(vitest@0.31.0)':
-    dependencies:
-      modern-node-polyfills: 0.1.3(rollup@3.29.4)
-      sirv: 2.0.3
-      vitest: 0.31.0(@vitest/browser@0.31.1)(happy-dom@9.20.3)(terser@5.17.3)(webdriverio@8.10.5(encoding@0.1.13)(typescript@5.1.6))
-    transitivePeerDependencies:
-      - rollup
-    optional: true
-
   '@vitest/expect@0.31.0':
     dependencies:
       '@vitest/spy': 0.31.0
@@ -16041,6 +16164,12 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
+  asn1js@3.0.6:
+    dependencies:
+      pvtsutils: 1.3.6
+      pvutils: 1.1.3
+      tslib: 2.8.1
+
   assert-plus@0.2.0: {}
 
   assert-plus@1.0.0: {}
@@ -16129,6 +16258,28 @@ snapshots:
       - supports-color
 
   before-after-hook@2.2.3: {}
+
+  better-auth@1.2.7:
+    dependencies:
+      '@better-auth/utils': 0.2.4
+      '@better-fetch/fetch': 1.1.18
+      '@noble/ciphers': 0.6.0
+      '@noble/hashes': 1.8.0
+      '@simplewebauthn/browser': 13.1.0
+      '@simplewebauthn/server': 13.1.1
+      better-call: 1.0.9
+      defu: 6.1.4
+      jose: 5.10.0
+      kysely: 0.27.6
+      nanostores: 0.11.4
+      zod: 3.24.4
+
+  better-call@1.0.9:
+    dependencies:
+      '@better-fetch/fetch': 1.1.18
+      rou3: 0.5.1
+      set-cookie-parser: 2.7.1
+      uncrypto: 0.1.3
 
   better-path-resolve@1.0.0:
     dependencies:
@@ -17058,6 +17209,8 @@ snapshots:
 
   defined@1.0.1: {}
 
+  defu@6.1.4: {}
+
   delaunator@5.0.1:
     dependencies:
       robust-predicates: 3.0.2
@@ -17200,21 +17353,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.28.5(@libsql/client@0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.8.0)(better-sqlite3@8.5.2)(kysely@0.26.1):
+  drizzle-orm@0.28.5(@libsql/client@0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.8.0)(better-sqlite3@8.5.2)(kysely@0.27.6):
     optionalDependencies:
       '@libsql/client': 0.3.4(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
       '@opentelemetry/api': 1.4.1
       '@planetscale/database': 1.8.0
       better-sqlite3: 8.5.2
-      kysely: 0.26.1
+      kysely: 0.27.6
 
-  drizzle-orm@0.28.5(@libsql/client@0.3.5(encoding@0.1.13))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.26.1):
+  drizzle-orm@0.28.5(@libsql/client@0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.26.1):
     optionalDependencies:
-      '@libsql/client': 0.3.5(encoding@0.1.13)
+      '@libsql/client': 0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
       '@opentelemetry/api': 1.4.1
       '@planetscale/database': 1.14.0
       better-sqlite3: 8.5.2
       kysely: 0.26.1
+
+  drizzle-orm@0.28.5(@libsql/client@0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3))(@opentelemetry/api@1.4.1)(@planetscale/database@1.14.0)(better-sqlite3@8.5.2)(kysely@0.27.6):
+    optionalDependencies:
+      '@libsql/client': 0.3.5(bufferutil@4.0.7)(encoding@0.1.13)(utf-8-validate@6.0.3)
+      '@opentelemetry/api': 1.4.1
+      '@planetscale/database': 1.14.0
+      better-sqlite3: 8.5.2
+      kysely: 0.27.6
 
   duplexer2@0.1.4:
     dependencies:
@@ -18703,6 +18864,8 @@ snapshots:
 
   jose@4.14.6: {}
 
+  jose@5.10.0: {}
+
   jotai-cache@0.3.0(jotai@2.2.0(react@18.2.0)):
     dependencies:
       jotai: 2.2.0(react@18.2.0)
@@ -18849,6 +19012,8 @@ snapshots:
       kysely: 0.26.1
 
   kysely@0.26.1: {}
+
+  kysely@0.27.6: {}
 
   layout-base@1.0.2: {}
 
@@ -19117,23 +19282,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-from-markdown@2.0.1:
-    dependencies:
-      '@types/mdast': 4.0.1
-      '@types/unist': 3.0.0
-      decode-named-character-reference: 1.0.2
-      devlop: 1.1.0
-      mdast-util-to-string: 4.0.0
-      micromark: 4.0.0
-      micromark-util-decode-numeric-character-reference: 2.0.1
-      micromark-util-decode-string: 2.0.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-      unist-util-stringify-position: 4.0.0
-    transitivePeerDependencies:
-      - supports-color
-
   mdast-util-frontmatter@1.0.1:
     dependencies:
       '@types/mdast': 3.0.13
@@ -19293,10 +19441,6 @@ snapshots:
     dependencies:
       '@types/mdast': 3.0.13
 
-  mdast-util-to-string@4.0.0:
-    dependencies:
-      '@types/mdast': 4.0.1
-
   mdast-util-toc@6.1.1:
     dependencies:
       '@types/extend': 3.0.2
@@ -19399,25 +19543,6 @@ snapshots:
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
       uvu: 0.5.6
-
-  micromark-core-commonmark@2.0.1:
-    dependencies:
-      decode-named-character-reference: 1.0.2
-      devlop: 1.1.0
-      micromark-factory-destination: 2.0.0
-      micromark-factory-label: 2.0.0
-      micromark-factory-space: 2.0.0
-      micromark-factory-title: 2.0.0
-      micromark-factory-whitespace: 2.0.0
-      micromark-util-character: 2.0.1
-      micromark-util-chunked: 2.0.0
-      micromark-util-classify-character: 2.0.0
-      micromark-util-html-tag-name: 2.0.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-resolve-all: 2.0.0
-      micromark-util-subtokenize: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
 
   micromark-extension-frontmatter@1.1.1:
     dependencies:
@@ -19551,25 +19676,12 @@ snapshots:
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
 
-  micromark-factory-destination@2.0.0:
-    dependencies:
-      micromark-util-character: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
   micromark-factory-label@1.1.0:
     dependencies:
       micromark-util-character: 1.2.0
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
       uvu: 0.5.6
-
-  micromark-factory-label@2.0.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-util-character: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
 
   micromark-factory-mdx-expression@1.0.9:
     dependencies:
@@ -19587,11 +19699,6 @@ snapshots:
       micromark-util-character: 1.2.0
       micromark-util-types: 1.1.0
 
-  micromark-factory-space@2.0.0:
-    dependencies:
-      micromark-util-character: 2.0.1
-      micromark-util-types: 2.0.0
-
   micromark-factory-title@1.1.0:
     dependencies:
       micromark-factory-space: 1.1.0
@@ -19599,26 +19706,12 @@ snapshots:
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
 
-  micromark-factory-title@2.0.0:
-    dependencies:
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
   micromark-factory-whitespace@1.1.0:
     dependencies:
       micromark-factory-space: 1.1.0
       micromark-util-character: 1.2.0
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
-
-  micromark-factory-whitespace@2.0.0:
-    dependencies:
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
 
   micromark-util-character@1.2.0:
     dependencies:
@@ -19634,39 +19727,20 @@ snapshots:
     dependencies:
       micromark-util-symbol: 1.1.0
 
-  micromark-util-chunked@2.0.0:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-
   micromark-util-classify-character@1.1.0:
     dependencies:
       micromark-util-character: 1.2.0
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
 
-  micromark-util-classify-character@2.0.0:
-    dependencies:
-      micromark-util-character: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
   micromark-util-combine-extensions@1.1.0:
     dependencies:
       micromark-util-chunked: 1.1.0
       micromark-util-types: 1.1.0
 
-  micromark-util-combine-extensions@2.0.0:
-    dependencies:
-      micromark-util-chunked: 2.0.0
-      micromark-util-types: 2.0.0
-
   micromark-util-decode-numeric-character-reference@1.1.0:
     dependencies:
       micromark-util-symbol: 1.1.0
-
-  micromark-util-decode-numeric-character-reference@2.0.1:
-    dependencies:
-      micromark-util-symbol: 2.0.0
 
   micromark-util-decode-string@1.1.0:
     dependencies:
@@ -19674,13 +19748,6 @@ snapshots:
       micromark-util-character: 1.2.0
       micromark-util-decode-numeric-character-reference: 1.1.0
       micromark-util-symbol: 1.1.0
-
-  micromark-util-decode-string@2.0.0:
-    dependencies:
-      decode-named-character-reference: 1.0.2
-      micromark-util-character: 2.0.1
-      micromark-util-decode-numeric-character-reference: 2.0.1
-      micromark-util-symbol: 2.0.0
 
   micromark-util-encode@1.1.0: {}
 
@@ -19699,23 +19766,13 @@ snapshots:
 
   micromark-util-html-tag-name@1.2.0: {}
 
-  micromark-util-html-tag-name@2.0.0: {}
-
   micromark-util-normalize-identifier@1.1.0:
     dependencies:
       micromark-util-symbol: 1.1.0
 
-  micromark-util-normalize-identifier@2.0.0:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-
   micromark-util-resolve-all@1.1.0:
     dependencies:
       micromark-util-types: 1.1.0
-
-  micromark-util-resolve-all@2.0.0:
-    dependencies:
-      micromark-util-types: 2.0.0
 
   micromark-util-sanitize-uri@1.2.0:
     dependencies:
@@ -19735,13 +19792,6 @@ snapshots:
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
       uvu: 0.5.6
-
-  micromark-util-subtokenize@2.0.1:
-    dependencies:
-      devlop: 1.1.0
-      micromark-util-chunked: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
 
   micromark-util-symbol@1.1.0: {}
 
@@ -19770,28 +19820,6 @@ snapshots:
       micromark-util-symbol: 1.1.0
       micromark-util-types: 1.1.0
       uvu: 0.5.6
-    transitivePeerDependencies:
-      - supports-color
-
-  micromark@4.0.0:
-    dependencies:
-      '@types/debug': 4.1.9
-      debug: 4.3.4
-      decode-named-character-reference: 1.0.2
-      devlop: 1.1.0
-      micromark-core-commonmark: 2.0.1
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.0.1
-      micromark-util-chunked: 2.0.0
-      micromark-util-combine-extensions: 2.0.0
-      micromark-util-decode-numeric-character-reference: 2.0.1
-      micromark-util-encode: 2.0.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-resolve-all: 2.0.0
-      micromark-util-sanitize-uri: 2.0.0
-      micromark-util-subtokenize: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
     transitivePeerDependencies:
       - supports-color
 
@@ -19926,6 +19954,8 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.6: {}
+
+  nanostores@0.11.4: {}
 
   napi-build-utils@1.0.2: {}
 
@@ -20879,6 +20909,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  pvtsutils@1.3.6:
+    dependencies:
+      tslib: 2.8.1
+
+  pvutils@1.1.3: {}
+
   q@1.5.1: {}
 
   qs@6.11.2:
@@ -21786,15 +21822,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remark-parse@11.0.0:
-    dependencies:
-      '@types/mdast': 4.0.1
-      mdast-util-from-markdown: 2.0.1
-      micromark-util-types: 2.0.0
-      unified: 11.0.4
-    transitivePeerDependencies:
-      - supports-color
-
   remark-parse@6.0.3:
     dependencies:
       collapse-white-space: 1.0.6
@@ -22125,6 +22152,8 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  rou3@0.5.1: {}
+
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
@@ -22210,6 +22239,8 @@ snapshots:
       type-fest: 0.20.2
 
   set-blocking@2.0.0: {}
+
+  set-cookie-parser@2.7.1: {}
 
   set-function-name@2.0.1:
     dependencies:
@@ -22819,6 +22850,8 @@ snapshots:
 
   tslib@2.6.2: {}
 
+  tslib@2.8.1: {}
+
   tsup@6.7.0(postcss@8.4.31)(typescript@5.1.6):
     dependencies:
       bundle-require: 4.0.2(esbuild@0.17.19)
@@ -22956,7 +22989,7 @@ snapshots:
 
   typescript@5.1.6: {}
 
-  typescript@5.3.3: {}
+  typescript@5.8.3: {}
 
   ua-parser-js@1.0.36: {}
 
@@ -22973,6 +23006,8 @@ snapshots:
     dependencies:
       buffer: 5.7.1
       through: 2.3.8
+
+  uncrypto@0.1.3: {}
 
   unherit@1.1.3:
     dependencies:
@@ -23017,16 +23052,6 @@ snapshots:
       is-plain-obj: 4.1.0
       trough: 2.1.0
       vfile: 5.3.7
-
-  unified@11.0.4:
-    dependencies:
-      '@types/unist': 3.0.0
-      bail: 2.0.2
-      devlop: 1.1.0
-      extend: 3.0.2
-      is-plain-obj: 4.1.0
-      trough: 2.1.0
-      vfile: 6.0.1
 
   unified@7.1.0:
     dependencies:
@@ -23418,46 +23443,6 @@ snapshots:
       - supports-color
       - terser
 
-  vitest@0.31.0(@vitest/browser@0.31.1)(happy-dom@9.20.3)(terser@5.17.3)(webdriverio@8.10.5(encoding@0.1.13)(typescript@5.1.6)):
-    dependencies:
-      '@types/chai': 4.3.6
-      '@types/chai-subset': 1.3.3
-      '@types/node': 18.15.13
-      '@vitest/expect': 0.31.0
-      '@vitest/runner': 0.31.0
-      '@vitest/snapshot': 0.31.0
-      '@vitest/spy': 0.31.0
-      '@vitest/utils': 0.31.0
-      acorn: 8.10.0
-      acorn-walk: 8.2.0
-      cac: 6.7.14
-      chai: 4.3.10
-      concordance: 5.0.4
-      debug: 4.3.4
-      local-pkg: 0.4.3
-      magic-string: 0.30.3
-      pathe: 1.1.1
-      picocolors: 1.0.0
-      std-env: 3.4.3
-      strip-literal: 1.3.0
-      tinybench: 2.5.1
-      tinypool: 0.5.0
-      vite: 4.4.9(@types/node@18.15.13)(terser@5.17.3)
-      vite-node: 0.31.0(@types/node@18.15.13)(terser@5.17.3)
-      why-is-node-running: 2.2.2
-    optionalDependencies:
-      '@vitest/browser': 0.31.1(vitest@0.31.0)
-      happy-dom: 9.20.3
-      webdriverio: 8.10.5(bufferutil@4.0.7)(encoding@0.1.13)(typescript@5.1.6)(utf-8-validate@6.0.3)
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-
   vscode-oniguruma@1.7.0: {}
 
   vscode-textmate@8.0.0: {}
@@ -23722,5 +23707,7 @@ snapshots:
   zod@3.21.4: {}
 
   zod@3.22.4: {}
+
+  zod@3.24.4: {}
 
   zwitch@2.0.4: {}
