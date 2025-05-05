@@ -3,8 +3,8 @@ import { z } from "zod";
 
 export const env = createEnv({
     server: {
-        NEXTAUTH_URL: z.string().url().optional(),
-        NEXTAUTH_SECRET: z.string().min(1),
+        BETTER_AUTH_URL: z.string().url().optional(),
+        BETTER_AUTH_SECRET: z.string().min(1),
         GITHUB_CLIENT_ID: z.string().min(0).optional(),
         GITHUB_CLIENT_SECRET: z.string().min(0).optional(),
         GOOGLE_CLIENT_ID: z.string().min(0).optional(),
@@ -25,8 +25,8 @@ export const env = createEnv({
         NEXT_PUBLIC_API_URL: z.string().min(1),
     },
     runtimeEnv: {
-        NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-        NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+        BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+        BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
